@@ -14,10 +14,10 @@ data class SearchAsteroidItems(
 
 data class SearchAsteroidItem(
     @field:SerializedName("data")
-    val data: SearchAsteroidItemData,
+    val data: List<SearchAsteroidItemData>,
 
     @field:SerializedName("links")
-    val links: List<SearchAsteroidItemLink>
+    val links: List<SearchAsteroidItemLink>?
 )
 
 data class SearchAsteroidItemData(

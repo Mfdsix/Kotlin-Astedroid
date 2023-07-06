@@ -8,6 +8,8 @@ interface IAsteroidRepository {
 
     fun getAll(): Flow<Resource<List<Asteroid>>>
 
+    fun getDetail(asteroidId: String): Flow<Asteroid?>
+
     fun getFavorite(): Flow<List<Asteroid>>
 
     fun setIsFavorite(tourism: Asteroid, state: Boolean)

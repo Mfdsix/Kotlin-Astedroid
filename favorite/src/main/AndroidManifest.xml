@@ -14,7 +14,8 @@
 
     <application>
         <activity
-            android:name="com.mfdsix.astedroid.favorite.favorite.FavoriteActivity">
+            android:name="com.mfdsix.astedroid.favorite.favorite.FavoriteActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

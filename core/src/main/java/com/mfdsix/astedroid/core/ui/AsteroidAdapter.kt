@@ -3,6 +3,7 @@ package com.mfdsix.astedroid.core.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mfdsix.astedroid.core.R
@@ -36,10 +37,10 @@ class AsteroidAdapter : RecyclerView.Adapter<AsteroidAdapter.ListViewHolder>() {
         fun bind(data: Asteroid) {
             with(binding) {
                 Glide.with(itemView.context)
-                    .load(data.image)
+                    .load(data.image ?: ContextCompat.getDrawable(itemView.context, R.drawable.asteroid))
                     .into(ivItemImage)
                 tvItemTitle.text = data.title
-                tvItemDescription.text = data.description
+                tvItemDescription.text = data.description.substring(0, 50)
             }
         }
 

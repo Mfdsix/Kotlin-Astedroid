@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface AsteroidUseCase {
     fun getAll(): Flow<Resource<List<Asteroid>>>
+
+    fun getDetail(asteroidId: String): Flow<Asteroid?>
     fun getFavorite(): Flow<List<Asteroid>>
     fun setIsFavorite(asteroid: Asteroid, state: Boolean)
 }

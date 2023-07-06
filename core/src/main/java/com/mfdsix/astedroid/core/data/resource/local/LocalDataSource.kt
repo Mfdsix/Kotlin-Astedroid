@@ -11,6 +11,8 @@ class LocalDataSource @Inject constructor(private val asteroidDao: AsteroidDao) 
 
     fun getAllAsteroids(): Flow<List<AsteroidEntity>> = asteroidDao.getAll()
 
+    fun getDetailAsteroid(asteroidId: String): Flow<AsteroidEntity?> = asteroidDao.getDetail(asteroidId)
+
     fun getFavoriteAsteroid(): Flow<List<AsteroidEntity>> = asteroidDao.getFavorite()
 
     suspend fun insertAsteroid(asteroidList: List<AsteroidEntity>) = asteroidDao.insert(asteroidList)

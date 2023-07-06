@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class Asteroid(
     val id: String,
     val title: String,
-    val image: String,
+    val image: String?,
     val description: String,
     val center: String,
     val createdAt: String,

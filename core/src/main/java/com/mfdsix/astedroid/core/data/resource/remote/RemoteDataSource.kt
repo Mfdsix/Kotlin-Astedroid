@@ -21,12 +21,12 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
                 if (dataArray.isNotEmpty()){
                     emit(ApiResponse.Success(response.collection.items.map {
                         AsteroidResponse(
-                            it.data.nasaId,
-                            it.data.title,
-                            it.links[0].href,
-                            it.data.description,
-                            it.data.center,
-                            it.data.dateCreated
+                            it.data[0].nasaId,
+                            it.data[0].title,
+                            if(!it.links.isNullOrEmpty()) it.links[0].href else null,
+                            it.data[0].description,
+                            it.data[0].center,
+                            it.data[0].dateCreated
                         )
                     }))
                 } else {

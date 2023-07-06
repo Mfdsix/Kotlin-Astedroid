@@ -40,6 +40,16 @@ class AsteroidRepository @Inject constructor(
             }
         }.asFlow()
 
+    override fun getDetail(asteroidId: String): Flow<Asteroid?> {
+        return localDataSource.getDetailAsteroid(asteroidId).map {
+            if(it != null){
+                DataMapper.mapEntityToDomain(it)
+            }else{
+                null
+            }
+        }
+    }
+
     override fun getFavorite(): Flow<List<Asteroid>> {
         return localDataSource.getFavoriteAsteroid().map {
             DataMapper.mapEntitiesToDomain(it)

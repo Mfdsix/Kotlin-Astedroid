@@ -27,7 +27,7 @@ class NetworkModule {
     @Provides
     fun provideApiService(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://https://images-api.nasa.gov/")
+            .baseUrl("https://images-api.nasa.gov/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

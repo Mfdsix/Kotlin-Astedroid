@@ -8,6 +8,8 @@ class AsteroidInteractor @Inject constructor(private val asteroidRepository: IAs
 
     override fun getAll() = asteroidRepository.getAll()
 
+    override fun getDetail(asteroidId: String) = asteroidRepository.getDetail(asteroidId)
+
     override fun getFavorite() = asteroidRepository.getFavorite()
 
     override fun setIsFavorite(asteroid: Asteroid, state: Boolean) = asteroidRepository.setIsFavorite(asteroid, state)

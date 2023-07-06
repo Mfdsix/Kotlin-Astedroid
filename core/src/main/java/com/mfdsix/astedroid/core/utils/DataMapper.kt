@@ -22,6 +22,17 @@ object DataMapper {
         return entityList
     }
 
+    fun mapEntityToDomain(input: AsteroidEntity): Asteroid =
+        Asteroid(
+            input.id,
+            input.title,
+            input.image,
+            input.description,
+            input.center,
+            input.createdAt,
+            input.isFavorite
+        )
+
     fun mapEntitiesToDomain(input: List<AsteroidEntity>): List<Asteroid> =
         input.map {
             Asteroid(

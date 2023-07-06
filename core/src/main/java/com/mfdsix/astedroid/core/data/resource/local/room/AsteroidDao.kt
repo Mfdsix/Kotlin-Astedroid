@@ -14,6 +14,9 @@ interface AsteroidDao {
     @Query("SELECT * FROM asteroid")
     fun getAll(): Flow<List<AsteroidEntity>>
 
+    @Query("SELECT * FROM asteroid where id = :asteroidId")
+    fun getDetail(asteroidId: String): Flow<AsteroidEntity?>
+
     @Query("SELECT * FROM asteroid where isFavorite = 1")
     fun getFavorite(): Flow<List<AsteroidEntity>>
 
