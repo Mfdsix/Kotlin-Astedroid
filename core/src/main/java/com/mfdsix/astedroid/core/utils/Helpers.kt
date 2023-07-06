@@ -3,8 +3,10 @@ package com.mfdsix.astedroid.core.utils
 import android.annotation.SuppressLint
 import android.os.Build.VERSION
 import java.text.SimpleDateFormat
+import java.time.Instant
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Date
 
 
 @SuppressLint("SimpleDateFormat")
@@ -22,5 +24,19 @@ fun String.withDateFormat(): String {
         }
     }catch(e: Throwable) {
         return "-"
+    }
+}
+
+class Helpers{
+
+    companion object{
+        fun getNowDateTime(): String {
+            return if(VERSION.SDK_INT >= 26){
+                DateTimeFormatter.ISO_INSTANT.format(Instant.now())
+            }else{
+                val s = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                s.format(Date())
+            }
+        }
     }
 }

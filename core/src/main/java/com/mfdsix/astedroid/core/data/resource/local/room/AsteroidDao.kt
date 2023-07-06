@@ -17,12 +17,12 @@ interface AsteroidDao {
     @Query("SELECT * FROM asteroid where id = :asteroidId")
     fun getDetail(asteroidId: String): Flow<AsteroidEntity?>
 
-    @Query("SELECT * FROM asteroid where isFavorite = 1")
+    @Query("SELECT * FROM asteroid where isFavorite = 1 order by createdAt desc")
     fun getFavorite(): Flow<List<AsteroidEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(tourism: List<AsteroidEntity>)
+    suspend fun insert(asteroid: List<AsteroidEntity>)
 
     @Update
-    fun updateIsFavorite(tourism: AsteroidEntity)
+    fun updateIsFavorite(asteroid: AsteroidEntity)
 }

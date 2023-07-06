@@ -7,10 +7,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mfdsix.astedroid.core.R
-import com.mfdsix.astedroid.core.databinding.ItemAsteroidBinding
+import com.mfdsix.astedroid.core.databinding.ItemFavoritedAsteroidBinding
 import com.mfdsix.astedroid.core.domain.model.Asteroid
 
-class AsteroidAdapter () : RecyclerView.Adapter<AsteroidAdapter.ListViewHolder>() {
+class FavoritedAsteroidAdapter () : RecyclerView.Adapter<FavoritedAsteroidAdapter.ListViewHolder>() {
 
     private var listData = ArrayList<Asteroid>()
     var onItemClick: ((Asteroid) -> Unit)? = null
@@ -23,7 +23,7 @@ class AsteroidAdapter () : RecyclerView.Adapter<AsteroidAdapter.ListViewHolder>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_asteroid, parent, false))
+        ListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_favorited_asteroid, parent, false))
 
     override fun getItemCount() = listData.size
 
@@ -33,7 +33,7 @@ class AsteroidAdapter () : RecyclerView.Adapter<AsteroidAdapter.ListViewHolder>(
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemAsteroidBinding.bind(itemView)
+        private val binding = ItemFavoritedAsteroidBinding.bind(itemView)
         fun bind(data: Asteroid) {
             with(binding) {
                 Glide.with(itemView.context)

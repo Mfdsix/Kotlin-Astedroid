@@ -32,8 +32,8 @@ class DetailActivity : AppCompatActivity() {
             intent.getParcelableExtra(ASTEROID_DATA)
         }
 
-        binding.toolbar.title = resources.getString(R.string.asteroid_detail)
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbar.toolbar)
+        supportActionBar?.title = resources.getString(R.string.asteroid_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 

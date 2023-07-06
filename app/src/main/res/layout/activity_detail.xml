@@ -7,20 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".detail.DetailActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <include
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Astedroid.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:titleTextColor="@color/white"
-            android:background="@color/black"
-            app:popupTheme="@style/Theme.Astredoid.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+        layout="@layout/include_appbar"
+        />
 
     <ScrollView
         android:layout_width="match_parent"

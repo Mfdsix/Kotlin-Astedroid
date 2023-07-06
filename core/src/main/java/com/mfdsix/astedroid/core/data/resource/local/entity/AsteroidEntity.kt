@@ -1,6 +1,5 @@
 package com.mfdsix.astedroid.core.data.resource.local.entity
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,7 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "asteroid")
 data class AsteroidEntity(
     @PrimaryKey
-    @NonNull
     @ColumnInfo(name = "id")
     var id: String,
 
@@ -28,5 +26,8 @@ data class AsteroidEntity(
     var createdAt: String,
 
     @ColumnInfo(name = "isFavorite")
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+
+    @ColumnInfo(name = "updatedAt")
+    var updatedAt: String? = null
 )
