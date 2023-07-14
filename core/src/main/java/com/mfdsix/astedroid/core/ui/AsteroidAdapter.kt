@@ -1,11 +1,9 @@
 package com.mfdsix.astedroid.core.ui
 
-import AsteroidDiffUtilCallback
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mfdsix.astedroid.core.R
@@ -19,13 +17,21 @@ class AsteroidAdapter : RecyclerView.Adapter<AsteroidAdapter.ListViewHolder>() {
 
     fun setData(newListData: List<Asteroid>?) {
         if (newListData == null) return
-
-        val diffResult = DiffUtil.calculateDiff(AsteroidDiffUtilCallback(listData, newListData))
+//        not work, dont know why
+//        val diffResult = DiffUtil.calculateDiff(AsteroidDiffUtilCallback(listData, newListData))
 
         listData.clear()
         listData.addAll(newListData)
 
-        diffResult.dispatchUpdatesTo(this)
+//          not work as well
+//        notifyItemRangeInserted(0, newListData.size)
+//        notifyItemRangeChanged(0, newListData.size)
+
+//      so i am just using this instead
+        notifyDataSetChanged()
+
+//        not work, dont know why
+//        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

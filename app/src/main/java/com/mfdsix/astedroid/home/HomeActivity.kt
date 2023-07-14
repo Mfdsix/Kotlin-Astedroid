@@ -59,6 +59,10 @@ class HomeActivity : AppCompatActivity() {
                     is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
+
+                        if(asteroid.data?.isEmpty() == true){
+                            binding.viewEmpty.root.visibility = View.VISIBLE
+                        }
                         asteroidAdapter.setData(asteroid.data)
                     }
 

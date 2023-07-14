@@ -15,10 +15,12 @@ class AsteroidDiffUtilCallback(private val oldList: List<Asteroid>, private val 
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return when (oldList[oldItemPosition].id) {
-            newList[newItemPosition].id -> true
-            else -> false
-        }
+        return oldList[oldItemPosition].id == newList[newItemPosition].id
+                && oldList[oldItemPosition].title == newList[newItemPosition].title
+    }
+
+    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+        return super.getChangePayload(oldItemPosition, newItemPosition)
     }
 
 }
