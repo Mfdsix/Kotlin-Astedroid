@@ -1,25 +1,31 @@
 package com.mfdsix.astedroid.core.ui
 
+import AsteroidDiffUtilCallback
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mfdsix.astedroid.core.R
 import com.mfdsix.astedroid.core.databinding.ItemAsteroidBinding
 import com.mfdsix.astedroid.core.domain.model.Asteroid
 
-class AsteroidAdapter () : RecyclerView.Adapter<AsteroidAdapter.ListViewHolder>() {
+class AsteroidAdapter : RecyclerView.Adapter<AsteroidAdapter.ListViewHolder>() {
 
     private var listData = ArrayList<Asteroid>()
     var onItemClick: ((Asteroid) -> Unit)? = null
 
     fun setData(newListData: List<Asteroid>?) {
         if (newListData == null) return
+
+        val diffResult = DiffUtil.calculateDiff(AsteroidDiffUtilCallback(listData, newListData))
+
         listData.clear()
         listData.addAll(newListData)
-        notifyDataSetChanged()
+
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

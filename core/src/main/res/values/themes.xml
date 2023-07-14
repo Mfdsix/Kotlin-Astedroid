@@ -7,11 +7,6 @@
 
     <style name="Theme.Astedroid" parent="Base.Theme.Astedroid" />
 
-    <style name="Theme.Astedroid.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="Theme.Astedroid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Astredoid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

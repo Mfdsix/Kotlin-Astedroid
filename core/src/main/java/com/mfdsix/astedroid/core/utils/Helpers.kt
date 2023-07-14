@@ -7,6 +7,7 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
+import java.util.Locale
 
 
 @SuppressLint("SimpleDateFormat")
@@ -34,7 +35,7 @@ class Helpers{
             return if(VERSION.SDK_INT >= 26){
                 DateTimeFormatter.ISO_INSTANT.format(Instant.now())
             }else{
-                val s = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                val s = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
                 s.format(Date())
             }
         }

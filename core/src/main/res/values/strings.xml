@@ -5,5 +5,4 @@
     <string name="asteroid_description">Asteroid Description</string>
     <string name="something_wrong">Something Went Wrong</string>
     <string name="no_data">No Data Available</string>
-    <string name="asteroid_image">Asteroid Image</string>
 </resources>
