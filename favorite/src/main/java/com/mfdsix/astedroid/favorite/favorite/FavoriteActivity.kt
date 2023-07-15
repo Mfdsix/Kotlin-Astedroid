@@ -47,29 +47,31 @@ class FavoriteActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        initializeRecyclerView()
         initializeViewModel()
     }
 
     private fun initializeRecyclerView(){
-        asteroidAdapter = FavoritedAsteroidAdapter()
-        asteroidAdapter.onItemClick = { selectedData ->
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.ASTEROID_DATA, selectedData)
-            startActivity(intent)
-        }
+        if(!this::asteroidAdapter.isInitialized) {
+            asteroidAdapter = FavoritedAsteroidAdapter()
+            asteroidAdapter.onItemClick = { selectedData ->
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.ASTEROID_DATA, selectedData)
+                startActivity(intent)
+            }
 
-        with(binding.rvAsteroid) {
-            layoutManager = LinearLayoutManager(this@FavoriteActivity)
-            setHasFixedSize(true)
-            adapter = asteroidAdapter
+            with(binding.rvAsteroid) {
+                layoutManager = LinearLayoutManager(this@FavoriteActivity)
+                setHasFixedSize(true)
+                adapter = asteroidAdapter
+            }
         }
     }
 
     private fun initializeViewModel(){
         favoriteViewModel.asteroid.observe(this) { asteroid ->
             if (asteroid != null) {
-                asteroidAdapter.setData(asteroid)
+                initializeRecyclerView()
+                asteroidAdapter.submitList(asteroid)
             }
 
             with(binding){

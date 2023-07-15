@@ -16,6 +16,9 @@ dependencies {
     //dagger
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // leak canary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
 }
 
 kapt {

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mfdsix.astedroid.R
 import com.mfdsix.astedroid.core.data.Resource
+import com.mfdsix.astedroid.core.domain.model.Asteroid
 import com.mfdsix.astedroid.core.ui.AsteroidAdapter
 import com.mfdsix.astedroid.databinding.ActivityHomeBinding
 import com.mfdsix.astedroid.detail.DetailActivity
@@ -24,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var asteroidAdapter: AsteroidAdapter
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -33,22 +34,23 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar.toolbar)
         supportActionBar?.title = resources.getString(R.string.app_name)
 
-        initializeRecyclerView()
         initializeViewModel()
     }
 
     private fun initializeRecyclerView(){
-        asteroidAdapter = AsteroidAdapter()
-        asteroidAdapter.onItemClick = { selectedData ->
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.ASTEROID_DATA, selectedData)
-            startActivity(intent)
-        }
+        if(!this::asteroidAdapter.isInitialized) {
+            asteroidAdapter = AsteroidAdapter()
+            asteroidAdapter.onItemClick = { selectedData ->
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.ASTEROID_DATA, selectedData)
+                startActivity(intent)
+            }
 
-        with(binding.rvAsteroid) {
-            layoutManager = LinearLayoutManager(this@HomeActivity)
-            setHasFixedSize(true)
-            adapter = asteroidAdapter
+            with(binding.rvAsteroid) {
+                layoutManager = LinearLayoutManager(this@HomeActivity)
+                setHasFixedSize(true)
+                adapter = asteroidAdapter
+            }
         }
     }
 
@@ -63,7 +65,9 @@ class HomeActivity : AppCompatActivity() {
                         if(asteroid.data?.isEmpty() == true){
                             binding.viewEmpty.root.visibility = View.VISIBLE
                         }
-                        asteroidAdapter.setData(asteroid.data)
+
+                        initializeRecyclerView()
+                        asteroidAdapter.submitList(asteroid.data)
                     }
 
                     is Resource.Error -> {

@@ -9,6 +9,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import javax.inject.Singleton
 
 @Module
@@ -17,10 +19,19 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideDatabase(@ApplicationContext context: Context): AsteroidDatabase = Room.databaseBuilder(
-        context,
-        AsteroidDatabase::class.java, "Asteroid.db"
-    ).fallbackToDestructiveMigration().build()
+    fun provideDatabase(@ApplicationContext context: Context): AsteroidDatabase {
+
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("astedroid".toCharArray())
+        val factory = SupportFactory(passphrase)
+
+        return Room.databaseBuilder(
+            context,
+            AsteroidDatabase::class.java, "Asteroid.db"
+        )
+            .fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
+    }
 
     @Provides
     fun provideTourismDao(database: AsteroidDatabase): AsteroidDao = database.asteroidDao()
