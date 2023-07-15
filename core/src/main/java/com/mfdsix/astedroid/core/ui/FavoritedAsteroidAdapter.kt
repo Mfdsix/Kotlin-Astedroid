@@ -13,16 +13,14 @@ import com.mfdsix.astedroid.core.domain.model.Asteroid
 
 class FavoritedAsteroidAdapter : ListAdapter<Asteroid, FavoritedAsteroidAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    private var listData = ArrayList<Asteroid>()
     var onItemClick: ((Asteroid) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MyViewHolder(
             ItemFavoritedAsteroidBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
-    override fun getItemCount() = listData.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val data = listData[position]
+        val data = getItem(position)
         holder.bind(data)
     }
 

@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.mfdsix.astedroid.core.di
 
 import com.mfdsix.astedroid.core.data.AsteroidRepository

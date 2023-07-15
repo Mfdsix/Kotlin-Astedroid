@@ -69,7 +69,7 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun initializeViewModel(){
         favoriteViewModel.asteroid.observe(this) { asteroid ->
-            if (asteroid != null) {
+            if (asteroid != null && asteroid.isNotEmpty()) {
                 initializeRecyclerView()
                 asteroidAdapter.submitList(asteroid)
             }

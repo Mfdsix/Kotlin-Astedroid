@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.mfdsix.astedroid.di
 
 import com.mfdsix.astedroid.core.domain.usecase.AsteroidInteractor
@@ -11,7 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class AppModule {
-
     @Binds
     @Singleton
     abstract fun provideAsteroidUseCase(asteroidInteractor: AsteroidInteractor): AsteroidUseCase

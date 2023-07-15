@@ -7,6 +7,7 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
+@Suppress("unused")
 class AppExecutors @VisibleForTesting constructor(
     private val diskIO: Executor,
     private val networkIO: Executor,
@@ -25,10 +26,6 @@ class AppExecutors @VisibleForTesting constructor(
     )
 
     fun diskIO(): Executor = diskIO
-
-    fun networkIO(): Executor = networkIO
-
-    fun mainThread(): Executor = mainThread
 
     private class MainThreadExecutor : Executor {
         private val mainThreadHandler = Handler(Looper.getMainLooper())

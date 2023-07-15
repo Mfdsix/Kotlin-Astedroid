@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mfdsix.astedroid.R
 import com.mfdsix.astedroid.core.data.Resource
-import com.mfdsix.astedroid.core.domain.model.Asteroid
 import com.mfdsix.astedroid.core.ui.AsteroidAdapter
 import com.mfdsix.astedroid.databinding.ActivityHomeBinding
 import com.mfdsix.astedroid.detail.DetailActivity
@@ -37,8 +36,8 @@ class HomeActivity : AppCompatActivity() {
         initializeViewModel()
     }
 
-    private fun initializeRecyclerView(){
-        if(!this::asteroidAdapter.isInitialized) {
+    private fun initializeRecyclerView() {
+        if (!this::asteroidAdapter.isInitialized) {
             asteroidAdapter = AsteroidAdapter()
             asteroidAdapter.onItemClick = { selectedData ->
                 val intent = Intent(this, DetailActivity::class.java)
@@ -54,7 +53,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializeViewModel(){
+    private fun initializeViewModel() {
         homeViewModel.asteroid.observe(this) { asteroid ->
             if (asteroid != null) {
                 when (asteroid) {
@@ -62,7 +61,7 @@ class HomeActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
 
-                        if(asteroid.data?.isEmpty() == true){
+                        if (asteroid.data?.isEmpty() == true) {
                             binding.viewEmpty.root.visibility = View.VISIBLE
                         }
 
@@ -73,7 +72,7 @@ class HomeActivity : AppCompatActivity() {
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.GONE
                         binding.viewError.root.visibility = View.VISIBLE
-                        if(asteroid.message != null) {
+                        if (asteroid.message != null) {
                             binding.viewError.tvError.text = asteroid.message
                         }
                     }
@@ -93,11 +92,12 @@ class HomeActivity : AppCompatActivity() {
                 goToFavorite()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun goToFavorite(){
+    private fun goToFavorite() {
         val uri = Uri.parse("astedroid://favorite")
         startActivity(Intent(Intent.ACTION_VIEW, uri))
     }
